@@ -1,6 +1,8 @@
 #include <stdio.h>
-int checkscore(char []);
+int checkscore(char std[]);
 int count1(char ans[][10],int std);
+int hardestQ(char ans[][10],int std,int ques);
+
 int main(){
 	int i,j;
 	char ans[8][10] ={
@@ -12,9 +14,11 @@ int main(){
 	{'B','B','E','C','C','D','E','E','A','D'},//7
 	{'B','B','A','C','C','D','E','E','A','D'},//7
 	{'E','B','E','C','C','D','E','E','A','D'}};//7
-	printf("No.1 correct : %d\n",count1(ans,8));
+	printf("Hardest question = %d\n",hardestQ(ans, 8, 10) + 1);
 	
+	return 0;
 }
+
 int checkscore(char std[]){
 	int i;
 	int score = 0;
@@ -38,4 +42,25 @@ int count1(char ans[][10],int std){
 		}
 	}
 	return count;
+}
+
+int hardestQ(char ans[][10],int std,int ques){
+	int i,j;
+	int mincrrt = std;
+	int hardest = 0;
+	char charkeys[10] = {'D','B','D','C','C','D','A','E','A','D'};
+	
+	for (j=0;j<std;j++){
+		int crrt = 0;
+		for (i=0;i<std;i++){
+			if(ans[i][j] == charkeys[j]){
+				crrt++;
+			}
+		}
+		if (crrt < mincrrt){
+			mincrrt = crrt;
+			hardest = j;
+		}
+	}
+	return hardest;
 }
