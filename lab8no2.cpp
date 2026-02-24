@@ -1,7 +1,6 @@
 #include <stdio.h>
-
-int checkscore(char std[]);
-
+int checkscore(char []);
+int count1(char ans[][10],int std);
 int main(){
 	int i,j;
 	char ans[8][10] ={
@@ -12,11 +11,8 @@ int main(){
 	{'A','B','D','C','C','D','E','E','A','D'},//8
 	{'B','B','E','C','C','D','E','E','A','D'},//7
 	{'B','B','A','C','C','D','E','E','A','D'},//7
-	{'E','B','E','C','C','D','E','E','A','D'}};//7\
-	charkeys[10] ={'D','B','D','C','C','D','A','E','A','D'};
-	for (i=0;i<8;i++){
-		printf("std %d => %d\n",(i+1),checkscore(ans[i]));
-	}
+	{'E','B','E','C','C','D','E','E','A','D'}};//7
+	printf("No.1 correct : %d\n",count1(ans,8));
 	
 }
 int checkscore(char std[]){
@@ -29,4 +25,17 @@ int checkscore(char std[]){
 			score++;
 	}
 	return score;
+}
+
+int count1(char ans[][10],int std){
+	int i;
+	int count = 0;
+	char charkeys[10] = {'D','B','D','C','C','D','A','E','A','D'};
+	
+	for (i=0;i<std;i++){
+		if(ans[i][0] == charkeys[0]){
+			count ++;
+		}
+	}
+	return count;
 }
